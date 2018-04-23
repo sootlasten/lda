@@ -1,0 +1,41 @@
+Gatsby Computational Neuroscience Unit, UCL
+Probabilistic and Unsupervised Learning Course
+Yee Whye Teh and Maneesh Sahani 
+Fall 2010
+
+Assignment 5
+
+data file structure:
+Each line contains four numbers: 
+        doc# word# traincount testcount
+Each line means that the word occurs in the document traincount times in the 
+training set and testcount times in the test set.  If a (doc,word) pair is
+not in the file this means that traincount=testcount=0.
+
+LDA structure:
+I         number of (doc,word) pairs in training and test sets
+D         number of documents
+K         number of topics
+W         number of words in vocabulary
+di(i)     the document index of the i'th (doc,word) pair 
+wi(i)     the word index of the i'th (doc,word) pair
+ci(i)     the number of times the word appears in the doc in training set
+citest(i) the number of times the word appears in the doc in test set
+          The above four numbers are same as in the data file structure
+Id{d}     list of indices of (doc,word) pairs with doc = d
+Iw{w}     list of indices of (doc,word) pairs with word = w
+Nd(d)     number of words in document d in training set
+alpha     dirichlet parameter on topic mixing proportions
+beta      dirichlet parameter on topic word distributions
+
+Posterior sample structure:
+zi{i}      is a list of ci(i) numbers between 1 and K.  They are the current
+           states of the latent topic assignment variables corresponding to 
+           the ci(i) occurrences of word wi(i) in document di(i).
+theta(d,:) is theta_d the distribution over topics in document d
+phi(k,:)   is phi_k the distribution words in topic k
+
+Counts:
+Adk(d,k)   number of words in document d assigned to topic k
+Bkw(k,w)   number of occurrences of word w assigned to topic k
+Mk(k)      total number of words assigned to topic k
